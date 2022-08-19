@@ -9,7 +9,7 @@ int removeElement(int* nums, int numsSize, int val){
     int left = 0, right = 0;
     while(right < numsSize)
     {
-        //不要试图在循环内找到合适的fast: 可能会溢出边界.
+        //不在循环内找到合适的fast,而是在外层循环处理.
         if(nums[right] != val)
         {
             nums[left] = nums[right];
@@ -19,6 +19,29 @@ int removeElement(int* nums, int numsSize, int val){
     }
     return left;
 }
+
+int removeElement(int* nums, int numsSize, int val){
+    int left = 0, right = 0;
+    while(right < numsSize)
+    {
+		//在外层循环内找到合适的fast.注意先做有效性检查.
+        while(right < numsSize && nums[right] == val)
+        {
+            right++;
+        }
+        if(right == numsSize) 
+        {
+            break;
+        }
+
+        nums[left] = nums[right];
+        left++;
+        right++;
+    }
+    return left;
+}
+
+
 //相当于归类,题目并不需要这么做
 int __removeElement(int* nums, int numsSize, int val){
     int slow = 0, fast = 0;
