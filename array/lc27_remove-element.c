@@ -4,7 +4,38 @@
  * @brief		一个双指针与集合维护的经典示例.
  */
  
-//将所有符合条件的值写到数组前.left是集合的右边界, right是遍历数组的当前位置
+ //主动扩充左边界, 上述方法是主动把右边的塞进来这里是左边主动的获取.其实用类似快排的左右指针也可以就是最终边界不好确定
+int __removeElement(int* nums, int numsSize, int val){
+    int slow = 0, fast = 0;
+    while(slow < numsSize )
+    {
+        if(nums[slow] == val)
+        {
+            fast = slow + 1;
+            while(fast < numsSize)
+            {
+                if(nums[fast]!=val)
+                {
+                    //swap
+                    int temp = nums[fast];
+                    nums[fast] = nums[slow];
+                    nums[slow] = temp;
+                    break;
+                } 
+                fast++;
+            }
+            if(fast == numsSize)
+            {
+                break;
+            } 
+        }
+        slow++;
+    }
+    return slow;
+}
+
+ 
+//这个方法有点蠢.会造成重复写. 将所有符合条件的值写到数组前.left是符合条件的集合的右边界, right是遍历数组的当前位置
 int removeElement(int* nums, int numsSize, int val){
     int left = 0, right = 0;
     while(right < numsSize)
@@ -45,33 +76,4 @@ int removeElement(int* nums, int numsSize, int val){
 }
 
 
-//相当于归类,题目并不需要这么做
-int __removeElement(int* nums, int numsSize, int val){
-    int slow = 0, fast = 0;
-    while(slow < numsSize )
-    {
-        if(nums[slow] == val)
-        {
-            fast = slow + 1;
-            while(fast < numsSize)
-            {
-                if(nums[fast]!=val)
-                {
-                    //swap
-                    int temp = nums[fast];
-                    nums[fast] = nums[slow];
-                    nums[slow] = temp;
-                    break;
-                } 
-                fast++;
-            }
-            if(fast == numsSize)
-            {
-                break;
-            } 
-        }
-        slow++;
-    }
-    return slow;
-}
 

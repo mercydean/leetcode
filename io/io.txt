@@ -1,3 +1,15 @@
+
+
+
+读取一个字符.
+int getchar(void)
+Description
+The C library function int getchar(void) gets a character (an unsigned char) from stdin. This is equivalent to getc with stdin as its argument.
+Parameters
+NA
+Return Value
+This function returns the character read as an unsigned char cast to an int or EOF on end of file or error.
+
 读取一行字符串
 char *gets(char *str);
 
@@ -18,7 +30,7 @@ https://man7.org/linux/man-pages/man3/scanf.3.html
 每次返回时都会记录文件的读取位置,此时文件的offset就指向当前出错的位置,下次再调用读取函数是接着上次返回的位置(也就是把这个出错的位置当作第一个字符)继续.
 并且,假设用户会在末尾输入EOF.(你可以自己写一个程序, 一直读%s,你会发现不输入EOF永远无法停止.)
 
-he format string consists of a sequence of directives which
+The format string consists of a sequence of directives which
        describe how to process the sequence of input characters.  If
        processing of a directive fails, no further input is read, and
        scanf() returns.  A "failure" can be either of the following:
@@ -147,7 +159,7 @@ char str[100][100];
 */
 while(scanf("%[^,\n]", &str[num]) != EOF)//%[char exclude ','and'\n']: find string until the next char is not contained in the set"[]" or the length runs out. read man page of printf for more details.
 {
-	if(getchar() == '\n')
+	if(getchar() == '\n')//可能读的是','.
 	{
 		//one line is read, do sth to this line.
 	}
