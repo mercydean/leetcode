@@ -1,0 +1,154 @@
+读取一行字符串
+char *gets(char *str);
+
+The C library function char *gets(char *str) reads a line from stdin and stores it into the string pointed to by str. 
+It stops when either the newline character is read or when the end-of-file is reached, whichever comes first.
+
+Parameters
+str − This is the pointer to an array of chars where the C string is stored.
+
+Return Value
+This function returns str on success, and NULL on error or when end of file occurs, while no characters have been read.
+
+
+读取指定字符集合并转换.
+int scanf(const char *restrict format, ...);
+https://man7.org/linux/man-pages/man3/scanf.3.html
+读取标准输入的字符缓冲区(理解为一个文件), 若长度不足, 等待一个个输入写入这个文件, 直到一个输入不匹配.
+每次返回时都会记录文件的读取位置,此时文件的offset就指向当前出错的位置,下次再调用读取函数是接着上次返回的位置(也就是把这个出错的位置当作第一个字符)继续.
+并且,假设用户会在末尾输入EOF.(你可以自己写一个程序, 一直读%s,你会发现不输入EOF永远无法停止.)
+
+he format string consists of a sequence of directives which
+       describe how to process the sequence of input characters.  If
+       processing of a directive fails, no further input is read, and
+       scanf() returns.  A "failure" can be either of the following:
+       input failure, meaning that input characters were unavailable, or
+       matching failure, meaning that the input was inappropriate (see
+       below).
+
+       A directive is one of the following:
+
+       •      A sequence of white-space characters (space, tab, newline,
+              etc.; see isspace(3)).  This directive matches any amount
+              of white space, including none, in the input.
+
+       •      An ordinary character (i.e., one other than white space or
+              '%').  This character must exactly match the next
+              character of input.
+
+       •      A conversion specification, which commences with a '%'
+              (percent) character.  A sequence of characters from the
+              input is converted according to this specification, and
+              the result is placed in the corresponding pointer
+              argument.  If the next item of input does not match the
+              conversion specification, the conversion fails—this is a
+              matching failure.
+		注意输入文件的前导空白符号通常会被忽略,除非是用%c以及%[]匹配一个个字符.
+
+RETURN VALUE         top
+       On success, these functions return the number of input items
+       successfully matched and assigned; this can be fewer than
+       provided for, or even zero, in the event of an early matching
+       failure.
+
+       The value EOF is returned if the end of input is reached before
+       either the first successful conversion or a matching failure
+       occurs.  EOF is also returned if a read error occurs, in which
+       case the error indicator for the stream (see ferror(3)) is set,
+       and errno is set to indicate the error.
+
+scanf
+
+输入
+1
+
+int a;
+if(scanf("%d", &a) != EOF)
+{
+    printf("%d\n", a);
+}
+
+输入
+1 5
+
+int a, b;
+if(scanf("%d %d", &a, &b) != EOF)
+{
+    printf("%d\n", a+b);
+}
+
+
+
+
+输入
+A Famous Saying: Much Ado About Nothing (2012/8).
+
+char input[1001] = {0};
+if (gets(input) == NULL)
+	return;
+
+
+/*输入
+a c bb
+f dddd
+nowcoder
+*/
+
+char str[100][100];
+/*
+Matches a sequence of non-white-space characters; the next
+pointer must be a pointer to the initial element of a
+character array that is long enough to hold the input
+sequence and the terminating null byte ('\0'), which is
+added automatically.  The input string stops at white
+space or at the maximum field width, whichever occurs
+first.
+*/
+while(scanf("%s", &str[num]) != EOF)
+{
+    num++;
+    if(getchar() == '\n')
+	{
+		//one line is read, do sth to this line. 
+	}
+}
+
+
+
+/*输入
+a,c,bb
+f,dddd
+nowcoder
+*/
+char str[100][100];
+
+/*
+  Matches a nonempty sequence of characters from the
+  specified set of accepted characters; the next pointer
+  must be a pointer to char, and there must be enough room
+  for all the characters in the string, plus a terminating
+  null byte.  The usual skip of leading white space is
+  suppressed.  The string is to be made up of characters in
+  (or not in) a particular set; the set is defined by the
+  characters between the open bracket [ character and a
+  close bracket ] character.  The set excludes those
+  characters if the first character after the open bracket
+  is a circumflex (^).  To include a close bracket in the
+  set, make it the first character after the open bracket or
+  the circumflex; any other position will end the set.  The
+  hyphen character - is also special; when placed between
+  two other characters, it adds all intervening characters
+  to the set.  To include a hyphen, make it the last
+  character before the final close bracket.  For instance,
+  [^]0-9-] means the set "everything except close bracket,
+  zero through nine, and hyphen".  The string ends with the
+  appearance of a character not in the (or, with a
+  circumflex, in) set or when the field width runs out.
+*/
+while(scanf("%[^,\n]", &str[num]) != EOF)//%[char exclude ','and'\n']: find string until the next char is not contained in the set"[]" or the length runs out. read man page of printf for more details.
+{
+	if(getchar() == '\n')
+	{
+		//one line is read, do sth to this line.
+	}
+}

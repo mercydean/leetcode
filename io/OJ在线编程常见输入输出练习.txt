@@ -1,0 +1,404 @@
+https://www.nowcoder.com/test/27976983/summary#question
+-----------------------------------------------------------------------
+A	A+B(1)
+
+输入
+1 5
+10 20
+
+输出
+6
+30
+-----------------------------------------------------------------------
+#include <stdio.h>
+
+int main() {
+    int a, b;
+    while(scanf("%d %d", &a, &b) != EOF)
+    {
+        printf("%d\n", a+b);
+    }
+    return 0;
+}
+-----------------------------------------------------------------------
+B	A+B(2)
+
+输入
+2
+1 5
+10 20
+
+输出
+6
+30
+-----------------------------------------------------------------------
+
+#include <stdio.h>
+
+int main(){
+    int n = 0;
+    int a, b;
+    scanf("%d", &n);
+    while(n--)
+    {
+        scanf("%d %d", &a, &b);
+        printf("%d\n", a + b);
+    }
+    return 0;
+}
+
+-----------------------------------------------------------------------
+C	A+B(3)
+
+输入
+1 5
+10 20
+0 0
+
+输出
+6
+30
+-----------------------------------------------------------------------
+#include <stdio.h>
+
+int main(){
+
+    int a, b;
+    while(scanf("%d %d", &a, &b) != EOF && (a != 0 && b != 0))
+    {
+        printf("%d\n", a + b);
+    }
+    return 0;
+}
+-----------------------------------------------------------------------
+D	A+B(4)
+
+输入
+4 1 2 3 4
+5 1 2 3 4 5
+0
+
+输出
+10
+15
+-----------------------------------------------------------------------
+#include <stdio.h>
+
+int main(){
+
+    int n;
+    int sum;
+    int var;
+    
+    scanf("%d", &n);
+    
+    while(n != 0)
+    {
+        sum = 0;
+        while(n--)
+        {
+            scanf("%d", &var);
+            sum += var;
+        }
+        printf("%d\n", sum);
+        
+        scanf("%d", &n);
+    }
+    return 0;
+}
+-----------------------------------------------------------------------
+E	A+B(5)
+
+输入
+2
+4 1 2 3 4
+5 1 2 3 4 5
+
+输出
+10
+15
+-----------------------------------------------------------------------
+#include <stdio.h>
+
+int main(){
+
+    int n_total;
+    int n_line;
+    
+    int sum;
+    int var;
+    
+    scanf("%d", &n_total);
+    
+    while(n_total--)
+    {
+        scanf("%d", &n_line);
+        sum = 0;
+        
+        while(n_line--)
+        {
+            scanf("%d", &var);
+            sum += var;
+        }
+        printf("%d\n", sum);
+    }
+    return 0;
+}
+-----------------------------------------------------------------------
+F	A+B(6)
+
+输入
+4 1 2 3 4
+5 1 2 3 4 5
+
+输出
+10
+15
+-----------------------------------------------------------------------
+#include <stdio.h>
+
+int main(int argn, char **argv)
+{
+    int num;
+    int var;
+    int sum;
+    
+    while(scanf("%d", &num) != EOF)
+    {
+        sum = 0;
+        while(num--)
+        {
+            scanf("%d", &var);
+            sum += var;
+        }
+        printf("%d\n", sum);
+    }
+    
+    return 0;
+}
+-----------------------------------------------------------------------
+G	A+B(7)
+
+输入
+1 2 3
+4 5
+0 0 0 0 0
+
+输出
+6
+9
+0
+-----------------------------------------------------------------------
+#include <stdio.h>
+
+int main(int argn, char **argv)
+{
+    int num;
+    int var;
+    int sum;
+    
+    sum = 0;
+    while(scanf("%d", &var) != EOF)
+    {
+        sum += var;
+        
+        if(getchar() == '\n')
+        {
+            printf("%d\n", sum);
+            sum = 0;
+        }
+    }
+    
+    return 0;
+}
+-----------------------------------------------------------------------
+H	字符串排序(1)
+
+输入
+5
+c d a bb e
+
+输出
+a bb c d e
+-----------------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
+
+int main(int argn, char **argv)
+{
+    int num;
+
+    scanf("%d", &num);
+    char str[num][100];
+    char temp[100] = {0};
+    int s_i, s_j;
+    
+    for(int i = 0; i < num; i++)
+    {
+        scanf("%s", &str[i]);
+    }
+    
+
+    for(s_i = 1; s_i < num; s_i++ )
+    {
+        strcpy(temp, str[s_i]);
+        //printf("temp: %s\n", temp);
+        
+        for(s_j = s_i - 1; s_j >=0; s_j--)
+        {
+            if( str[s_j][0] > temp[0])
+            {
+                //printf("%d : %s copy to: ", s_j,str[s_j]);
+                strcpy(str[s_j+1], str[s_j]);
+                //printf("copy to: %d : %s\n", s_j+1, str[s_j+1]);
+            }
+            else
+            {
+                break;
+            }
+        }
+        strcpy(str[s_j+1], temp);
+    }
+    
+    for(int o_i = 0; o_i < num; o_i++)
+    {
+        printf("%s", str[o_i]);
+        if(o_i != num -1)
+        {
+            printf(" ");
+        }
+    }
+
+    return 0;
+}
+-----------------------------------------------------------------------
+J	字符串排序(3)
+
+输入
+a c bb
+f dddd
+nowcoder
+
+输出
+a bb c
+dddd f
+nowcoder
+-----------------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
+
+int main(int argn, char **argv)
+{
+
+    char str[100][100];
+    char temp[100] = {0};
+    int s_i, s_j;
+    int num = 0;
+    
+    while(scanf("%s", &str[num]) != EOF)//输入完成后会在命令行
+    {
+        num++;
+        if(getchar() == '\n')//可能获取到的是' ' 
+        {
+            for(s_i = 1; s_i < num; s_i++ )
+            {
+                strcpy(temp, str[s_i]);
+                //printf("temp: %s\n", temp);
+
+                for(s_j = s_i - 1; s_j >=0; s_j--)
+                {
+                    if( str[s_j][0] > temp[0])
+                    {
+                        //printf("%d : %s copy to: ", s_j,str[s_j]);
+                        strcpy(str[s_j+1], str[s_j]);
+                        //printf("copy to: %d : %s\n", s_j+1, str[s_j+1]);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                strcpy(str[s_j+1], temp);
+            }
+            
+            for(int o_i = 0; o_i < num; o_i++)
+            {
+                printf("%s", str[o_i]);
+                if(o_i != num -1)
+                {
+                    printf(" ");
+                }
+                else
+                {
+                    printf("\n");
+                }
+            }
+            num = 0;
+        }     
+    }
+    return 0;
+}
+-----------------------------------------------------------------------
+J	字符串排序(3)
+输入
+a,c,bb
+f,dddd
+nowcoder
+
+输出
+a,bb,c
+dddd,f
+nowcoder
+-----------------------------------------------------------------------
+#include <stdio.h>
+#include <string.h>
+
+int main(int argn, char **argv)
+{
+
+    char str[100][100];
+    char temp[100] = {0};
+    int s_i, s_j;
+    int num = 0;
+    
+    while(scanf("%[^,\n]", &str[num]) != EOF)
+    {
+        num++;
+		
+        if(getchar() == '\n')//可能获取到的是',' 
+        {
+            for(s_i = 1; s_i < num; s_i++ )
+            {
+                strcpy(temp, str[s_i]);
+
+                for(s_j = s_i - 1; s_j >=0; s_j--)
+                {
+                    if( str[s_j][0] > temp[0])
+                    {                      
+                        strcpy(str[s_j+1], str[s_j]);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                strcpy(str[s_j+1], temp);
+            }
+            
+            for(int o_i = 0; o_i < num; o_i++)
+            {
+                printf("%s", str[o_i]);
+                if(o_i != num -1)
+                {
+                    printf(",");
+                }
+                else
+                {
+                    printf("\n");
+                }
+            }
+            num = 0;
+        }     
+    }
+    return 0;
+}
