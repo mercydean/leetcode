@@ -16,12 +16,12 @@ bool containsDuplicate(int* nums, int numsSize){
 
     for(int i = 0; i < numsSize; i++)
     {
-        HASH_FIND_INT(g_hash, &nums[i], temp_hash);//根据键值获取哈希项. INT表示key是int类型,格式为表头, int 指针, 哈希项指针.
+        HASH_FIND_INT(hash_head, &nums[i], temp_hash);//根据键值获取哈希项. INT表示key是int类型,格式为表头, int 指针, 哈希项指针.
         if(temp_hash == NULL)
         {
             temp_hash = malloc(sizeof(struct hash));
             temp_hash->key = nums[i];
-            HASH_ADD_INT(g_hash, key,temp_hash);//确认键值是我唯一的后, 添加哈希项INT表示键值是int类型,格式为表头, 作为键值的成员名, 哈希项指针.
+            HASH_ADD_INT(hash_head, key,temp_hash);//确认键值是我唯一的后, 添加哈希项INT表示键值是int类型,格式为表头, 作为键值的成员名, 哈希项指针.
         }
         else
         {
