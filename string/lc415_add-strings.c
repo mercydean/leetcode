@@ -20,7 +20,7 @@ char * addStrings(char * num1, char * num2){
     int chr1, chr2;
     for(i_1 = len_1 - 1, i_2 = len_2 - 1; i_1 >= 0 || i_2 >= 0 || carrier != 0; i_1--, i_2--)
     {   
-
+		//越界了就设为0.
         chr1 = i_1 < 0 ? '0': num1[i_1];    
         chr2 = i_2 < 0 ? '0': num2[i_2]; 
 
