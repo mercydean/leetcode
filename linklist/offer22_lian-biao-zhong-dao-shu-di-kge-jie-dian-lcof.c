@@ -12,12 +12,17 @@ struct ListNode* getKthFromEnd(struct ListNode* head, int k){
 
     if(head == NULL) return NULL;
 
-    while(k-- && slow != NULL)
+    while(k && slow != NULL)
     {
         slow = slow->next;
+        k--;
     }
 
-    //如果链表长度不够k, 就返回NULL;
+    /*
+     * 如果链表长度不够k, 就返回NULL.
+     * k     3    2    1     0
+     * node  . -> . -> . -> NULL
+     */
     if(k > 0) return NULL;
 
     while(slow != NULL)
