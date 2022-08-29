@@ -12,9 +12,9 @@ struct ListNode* getKthFromEnd(struct ListNode* head, int k){
 
     if(head == NULL) return NULL;
 
-    while(k && slow != NULL)
+    while(k && fast != NULL)
     {
-        slow = slow->next;
+        fast = fast->next;
         k--;
     }
 
@@ -25,10 +25,10 @@ struct ListNode* getKthFromEnd(struct ListNode* head, int k){
      */
     if(k > 0) return NULL;
 
-    while(slow != NULL)
+    while(fast != NULL)
     {
         slow = slow->next;
         fast = fast ->next;
     }
-    return fast;
+    return slow;
 }
