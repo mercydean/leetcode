@@ -17,4 +17,4 @@ struct ListNode* middleNode(struct ListNode* head){
     return slow;
 }
 
-/* 如要找到两个中间节点的第一个节点, 通过画图可知, 迭代判断的条件是fast(因为步长为2所以可以不判断这个) && fast->next && fast->next->next*/
+/* 如要找到两个中间节点的第一个节点, 通过画图可知, 迭代判断的条件是fast(因为步长为2所以可以不判断这个) && fast->next && fast->next->next.*/
