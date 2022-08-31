@@ -15,6 +15,7 @@ bool hasCycle(struct ListNode *head) {
         /*先自增后判断, 否则第一步就会判断成功.*/
         if(fast == slow)
         {
+            /* 以相同的步调重新开始遍历 */
             fast = head;
             while(fast != slow)
             {
