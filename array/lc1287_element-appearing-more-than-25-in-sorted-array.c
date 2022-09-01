@@ -10,13 +10,13 @@ int __findSpecialInteger(int* arr, int arrSize){
     for(int i = 0; i < arrSize; )
     {
         num = arr[i];
-        //初始值为1!!不是0.
-        length = 1;
+        length = 0;
 
         while(i<arrSize && arr[i] == num)
         {
-            if(length*4 > arrSize) return num;
             length++;
+            /*注意是*4判断, 浮点除法有误差: length > arrSize/4不好 */
+            if(length*4 > arrSize) return num;
             i++;
         }
         

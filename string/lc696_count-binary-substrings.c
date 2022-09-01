@@ -1,5 +1,5 @@
 /*
- * @problem		https://leetcode.cn/problems/longest-common-prefix/
+ * @problem		https://leetcode.cn/problems/count-binary-substrings/
  * @solution	
  * @brief		生成一个辅助数组来写.
  */

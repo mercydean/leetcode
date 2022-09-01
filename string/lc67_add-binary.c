@@ -19,7 +19,7 @@ char * addBinary(char * a, char * b){
     int chr1, chr2;
     for(i_1 = len_1 - 1, i_2 = len_2 - 1; i_1 >= 0 || i_2 >= 0 || carrier != 0; i_1--, i_2--)
     {   
-		//越界了就设为0.
+		//越界了就设为0, 不足的补0.
         chr1 = i_1 < 0 ? '0': a[i_1];    
         chr2 = i_2 < 0 ? '0': b[i_2]; 
 

@@ -10,6 +10,7 @@
     int prefix_len = 0;
     int quit = 0;
 
+    /* 一旦有一列不同, 或者有'\0', 就退出 */
     while(1)
     {
         quit = 0;

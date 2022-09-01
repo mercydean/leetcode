@@ -1,6 +1,6 @@
 /*
- * @problem		https://leetcode.cn/problems/top-k-frequent-words/
- * @solution	https://leetcode.cn/problems/top-k-frequent-words/solution/qian-kge-gao-pin-dan-ci-by-leetcode-solu-3qk0/
+ * @problem		https://leetcode.cn/problems/detect-capital/
+ * @solution	
  * @brief		核心是数值比较.
  */
  

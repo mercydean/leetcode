@@ -4,6 +4,8 @@
  * @brief		核心思想是哈希表存入各元素最大序号的值对.
  */
  
+#include "uthash.h"
+
 struct hash{
     int value;//用做键值.
     int index;
@@ -27,7 +29,7 @@ bool containsNearbyDuplicate(int* nums, int numsSize, int k){
             hash_temp->value = nums[i];
             hash_temp->index = i;
 			//注意!理论上不可以添加键值重复的哈希项.
-            HASH_ADD_INT(hash_head, value, hash_temp);//重复加入的再次获得就是最后加入的(也就是index更大的)
+            HASH_ADD_INT(hash_head, value, hash_temp);//但重复加入的再次获得就是最后加入的(也就是index更大的)
         }
     }
     return false;

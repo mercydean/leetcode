@@ -4,11 +4,17 @@
  * @brief		一个双指针与集合维护的经典示例.
  */
  
- //主动扩充左边界, 上述方法是主动把右边的塞进来这里是左边主动的获取.其实用类似快排的左右指针也可以就是最终边界不好确定
+ //主动扩充左边界, 这里是左边主动的获取.其实用类似快排的左右指针也可以就是最终边界不好确定
 int __removeElement(int* nums, int numsSize, int val){
     int slow = 0, fast = 0;
+
+    /* slow 试图拓展直到numsSize-1. */
     while(slow < numsSize )
     {
+        /* 每一轮, slow都是已分类完成的区间的右边界. 
+         * 如果nums[slow]为符合要求的值就可以扩展(slow++),不符合则要从右区间交换, 
+         * 若右区间为空或者没有符合要求的值就退出,当前slow就是最终区间的右边界
+         */
         if(nums[slow] == val)
         {
             fast = slow + 1;
@@ -24,6 +30,7 @@ int __removeElement(int* nums, int numsSize, int val){
                 } 
                 fast++;
             }
+            /* 如果右边没有满足条件的val就证明当前slow是分类的边界. */
             if(fast == numsSize)
             {
                 break;

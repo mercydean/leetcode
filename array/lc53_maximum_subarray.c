@@ -21,3 +21,23 @@ int maxSubArray(int* nums, int numsSize){
     return max_sum;
 }
 
+/* 优化,不使用数组记录最大值,只使用一个变量记录. */
+int maxSubArray(int* nums, int numsSize){
+    
+    int sum = 0;
+    int max = nums[0];//下限.
+
+    for(int i =0; i < numsSize; ++i)
+    {
+        if(sum > 0)
+        {
+            sum += nums[i];
+        }
+        else
+        {
+            sum = nums[i];
+        }
+        max = sum > max ? sum : max;
+    }
+    return max;
+}
